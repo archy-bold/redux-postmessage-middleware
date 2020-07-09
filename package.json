@@ -39,7 +39,8 @@
     "build:es": "tsc -m es6 --outDir es",
     "build:umd": "webpack --config webpack.config.js",
     "build": "run-p build:*",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "prepare": "yarn build"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2",
