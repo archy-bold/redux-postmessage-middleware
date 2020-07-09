@@ -10,7 +10,7 @@ type MessageDispatchingOptions = {
   targetURLs?: string[];
 };
 
-export const createMessageDispatcherMiddleware = ({ senderURL, parentURL, targetURLs }: MessageDispatchingOptions) => {
+export const createMessageDispatcherMiddleware = <S>({ senderURL, parentURL, targetURLs }: MessageDispatchingOptions) => {
   const dispatch = createMessageDispatcher({
     window,
     document,
@@ -19,17 +19,17 @@ export const createMessageDispatcherMiddleware = ({ senderURL, parentURL, target
     targetURLs,
   });
 
-  return MessageDispatcherMiddleware({ dispatch });
+  return MessageDispatcherMiddleware<S>({ dispatch });
 }
 
 type MessageReceiverOptions = {
   allowedURLs: string[];
 };
 
-export const createMessageReceiverMiddleware = ({ allowedURLs }: MessageReceiverOptions) => {
+export const createMessageReceiverMiddleware = <S>({ allowedURLs }: MessageReceiverOptions) => {
   const messageToActionHandler = createMessageToActionHandler({
     allowedURLs
   });
 
-  return MessageReceiverMiddleware({ messageToActionHandler });
+  return MessageReceiverMiddleware<S>({ messageToActionHandler });
 }

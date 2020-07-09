@@ -7,10 +7,10 @@ export type MessageDispatcherDependencies = {
   dispatch: MessageDispatcher
 };
 
-export type DispatcherMiddlewareFactory = (deps: MessageDispatcherDependencies) => Middleware;
+export type DispatcherMiddlewareFactory = <S>(deps: MessageDispatcherDependencies) => Middleware;
 
-export const MessageDispatcherMiddleware: DispatcherMiddlewareFactory = ({ dispatch }: MessageDispatcherDependencies) =>
-  () => (next: Dispatch<{}>) => (action: any) => {
+export const MessageDispatcherMiddleware: DispatcherMiddlewareFactory = <S>({ dispatch }: MessageDispatcherDependencies) =>
+  () => (next: Dispatch<S>) => (action: any) => {
     if (isLocalAction(action)) {
       dispatch(action);
     }
