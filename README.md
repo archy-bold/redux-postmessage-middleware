@@ -44,7 +44,7 @@ The `sendDataAction` wont be sent to or recieved by another Redux Store outside 
 import { createStore, applyMiddleware } from 'redux'
 import {
   createMessageDispatcherMiddleware,
-  createMessageRecieverMiddleware
+  createMessageReceiverMiddleware
 } from 'redux-postmessage-middleware';
 
 import reducer from './reducers'
@@ -61,7 +61,7 @@ const MessageDispatcherMiddleware = createMessageDispatcherMiddleware({
 });
 
 // create MessageReceiverMiddleware for recieving actions from postmessages
-const MessageReceiverMiddleware = createMessageRecieverMiddleware({
+const MessageReceiverMiddleware = createMessageReceiverMiddleware({
   allowedURLs: ['http://parent.domain', 'http://current.domain'],
 });
 
@@ -93,7 +93,7 @@ Creates a Redux middleware which broadcasts actions over postmessage.
   - `parentURL: String` - (Optional) If given, the action will be broadcasted to the parent window.
   - `targetURLs: []String` - All actions will be broadcasted to any frame matching these URLs.
 
-### `createMessageRecieverMiddleware`
+### `createMessageReceiverMiddleware`
 
 Creates a Redux middleware which listens to postmessages and dispatches any incoming action to the local Redux Store.
 

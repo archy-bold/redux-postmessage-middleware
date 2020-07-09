@@ -1,6 +1,6 @@
 import { createMessageDispatcher, createMessageToActionHandler } from './messaging';
-import { MessageDispatcherMiddleware, MessageRecieverMiddleware } from './middlewares';
-import { Store, Dispatch } from 'redux';
+import { MessageDispatcherMiddleware, MessageReceiverMiddleware } from './middlewares';
+import { Store, Dispatch, Middleware, MiddlewareAPI } from 'redux';
 
 export { actionType } from './action-helpers';
 
@@ -22,14 +22,14 @@ export const createMessageDispatcherMiddleware = ({ senderURL, parentURL, target
   return MessageDispatcherMiddleware({ dispatch });
 }
 
-type MessageRecieverOptions = {
+type MessageReceiverOptions = {
   allowedURLs: string[];
 };
 
-export const createMessageRecieverMiddleware = ({ allowedURLs }: MessageRecieverOptions) => {
+export const createMessageReceiverMiddleware = ({ allowedURLs }: MessageReceiverOptions) => {
   const messageToActionHandler = createMessageToActionHandler({
     allowedURLs
   });
 
-  return MessageRecieverMiddleware({ messageToActionHandler });
+  return MessageReceiverMiddleware({ messageToActionHandler });
 }
