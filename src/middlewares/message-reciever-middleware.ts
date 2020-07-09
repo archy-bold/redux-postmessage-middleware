@@ -1,4 +1,4 @@
-/// <reference path="index.d.ts" />
+import { Store, Dispatch } from 'redux';
 
 import { REMOTE_ACTION } from '../constants';
 import { MessageToActionHandler } from '../messaging';
@@ -7,12 +7,9 @@ type MessageRecieverDependencies = {
   messageToActionHandler: MessageToActionHandler;
 };
 
-export const MessageRecieverMiddleware = ({ messageToActionHandler }: MessageRecieverDependencies) => (store: Store) => {
+export const MessageRecieverMiddleware = ({ messageToActionHandler }: MessageRecieverDependencies) => (store: Store<{}>) => {
   window.addEventListener('message', messageToActionHandler((msgAction: any) => {
     store.dispatch(Object.defineProperty(msgAction, REMOTE_ACTION, { value: true }))
   }));
-  return (next: Dispatch) => (action: any) => next(action);
+  return (next: Dispatch<{}>) => (action: any) => next(action);
 };
-
-
-
