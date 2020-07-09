@@ -1,4 +1,4 @@
-import { Store, Dispatch, Middleware, MiddlewareAPI } from 'redux';
+import { Dispatch, MiddlewareAPI } from 'redux';
 
 import { REMOTE_ACTION } from '../constants';
 import { MessageToActionHandler } from '../messaging';
@@ -7,7 +7,7 @@ export type MessageReceiverDependencies = {
   messageToActionHandler: MessageToActionHandler;
 };
 
-export type ReceiverMiddlewareFactory = <S>(deps: MessageReceiverDependencies) => Middleware;
+export type ReceiverMiddlewareFactory = <S>(deps: MessageReceiverDependencies) => (api: MiddlewareAPI<S>) => (next: Dispatch<S>) => Dispatch<S>;
 
 export const MessageReceiverMiddleware: ReceiverMiddlewareFactory = <S>({ messageToActionHandler }: MessageReceiverDependencies) =>
   (store: MiddlewareAPI<S>) => {

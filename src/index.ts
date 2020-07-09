@@ -1,6 +1,7 @@
 import { createMessageDispatcher, createMessageToActionHandler } from './messaging';
 import { MessageDispatcherMiddleware, MessageReceiverMiddleware } from './middlewares';
-import { Store, Dispatch, Middleware, MiddlewareAPI } from 'redux';
+// @ts-ignore
+import { Dispatch, MiddlewareAPI } from 'redux';
 
 export { actionType } from './action-helpers';
 
