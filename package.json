@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nilpath/redux-postmessage-middleware.git"
+    "url": "git+https://github.com/archy-bold/redux-postmessage-middleware.git"
   },
   "author": {
     "name": "Christoffer Ahrling",
