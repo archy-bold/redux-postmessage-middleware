@@ -40,7 +40,7 @@
     "build:umd": "webpack --config webpack.config.js",
     "build": "run-p build:*",
     "prepublish": "npm run build",
-    "prepare": "npm run build"
+    "prepare": "npm run clean && npm run build"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2",
